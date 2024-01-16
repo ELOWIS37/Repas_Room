@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.repasroom.R
 import com.example.repasroom.model.Moble
-
-class MobleAdapter(private val mobles: List<Moble>) : RecyclerView.Adapter<MobleAdapter.MobleViewHolder>() {
+class MobleAdapter(private val mobles: List<Moble>, private val onItemClick: (Moble) -> Unit) :
+    RecyclerView.Adapter<MobleAdapter.MobleViewHolder>() {
 
     // ViewHolder que contiene las vistas para cada elemento
     class MobleViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -26,6 +26,11 @@ class MobleAdapter(private val mobles: List<Moble>) : RecyclerView.Adapter<Moble
     // Reemplaza el contenido de una vista (invocada por el layout manager)
     override fun onBindViewHolder(holder: MobleViewHolder, position: Int) {
         val moble = mobles[position]
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(moble)
+        }
+
         holder.nom.text = moble.nom
         holder.preu.text = moble.preu.toString() + "€"
     }
