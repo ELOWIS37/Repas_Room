@@ -10,4 +10,9 @@ class EditCatalegViewModel: ViewModel() {
     fun deleteMoble(context: Context, id: Int) {
         Repositori.deleteMoble(context, id)
     }
+
+    //update moble
+    fun editMoble(context: Context, id: Int, nom:String, preu: Int) {
+        Repositori.editMoble(context, id, nom, preu)
+    }
 }

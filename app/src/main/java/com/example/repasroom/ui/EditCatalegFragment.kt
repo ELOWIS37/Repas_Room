@@ -50,6 +50,17 @@ class EditCatalegFragment : Fragment() {
             }
             Navigation.findNavController(it).navigate(R.id.action_editCatalegFragment_to_catalegFragment)
         }
+
+        binding.updateButton.setOnClickListener {
+            val nom = binding.nomEditTextEdit.text.toString()
+            val preu = binding.preuEditNomEdit.text.toString().toInt()
+            val selectedItem = sharedViewModel.selectedItem.value
+            val id = selectedItem?.Id
+            if (id != null) {
+                editViewModel.editMoble(requireContext(), id, nom, preu)
+            }
+            Navigation.findNavController(it).navigate(R.id.action_editCatalegFragment_to_catalegFragment)
+        }
         return binding.root
     }
 }

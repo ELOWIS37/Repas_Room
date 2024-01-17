@@ -14,8 +14,8 @@ interface CatalegDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addMoble(moble: Moble)
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    fun editMoble(moble: Moble)
+    @Query("UPDATE Moble SET nom = :nom, preu = :preu WHERE Id = :id")
+    fun editMoble(id: Int, nom: String, preu: Int)
 
     @Query("DELETE FROM Moble WHERE Id = :id")
     fun deleteMoble(id: Int)

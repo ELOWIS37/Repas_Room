@@ -32,12 +32,12 @@ class Repositori {
         }
 
         //UPDATE moble
-        fun editMoble(context: Context, moble: Moble) {
+        fun editMoble(context: Context, id: Int, nom: String, preu: Int) {
 
             catalegDatabase = initializeDB(context)
 
             CoroutineScope(Dispatchers.IO).launch {
-                catalegDatabase!!.catalegDao().editMoble(moble)
+                catalegDatabase!!.catalegDao().editMoble(id, nom, preu)
             }
         }
 
