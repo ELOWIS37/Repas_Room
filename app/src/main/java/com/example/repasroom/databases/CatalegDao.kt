@@ -17,8 +17,8 @@ interface CatalegDao {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     fun editMoble(moble: Moble)
 
-    @Delete
-    fun deleteMoble(moble: Moble)
+    @Query("DELETE FROM Moble WHERE Id = :id")
+    fun deleteMoble(id: Int)
 
     @Query("SELECT * FROM Moble ORDER BY nom DESC")
     fun getMobles(): LiveData<List<Moble>>

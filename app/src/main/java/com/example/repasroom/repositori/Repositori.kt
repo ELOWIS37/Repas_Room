@@ -42,12 +42,12 @@ class Repositori {
         }
 
         //DELETE moble
-        fun deleteMoble(context: Context, moble: Moble) {
+        fun deleteMoble(context: Context, id: Int) {
 
             catalegDatabase = initializeDB(context)
 
             CoroutineScope(Dispatchers.IO).launch {
-                catalegDatabase!!.catalegDao().deleteMoble(moble)
+                catalegDatabase!!.catalegDao().deleteMoble(id)
             }
         }
 

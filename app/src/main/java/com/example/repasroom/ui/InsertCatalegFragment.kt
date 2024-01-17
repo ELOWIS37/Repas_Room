@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.repasroom.R
 import com.example.repasroom.databinding.FragmentInsertCatalegBinding
 import com.example.repasroom.viewmodel.InsertCatalegViewModel
@@ -36,6 +37,7 @@ class InsertCatalegFragment : Fragment() {
             val preu = binding.preuEditText.text.toString().toInt()
 
             insertCatalegViewModel.newMoble(requireContext(), nom, preu)
+            Navigation.findNavController(it).navigate(R.id.action_insertCatalegFragment_to_catalegFragment)
         }
         return binding.root
     }
