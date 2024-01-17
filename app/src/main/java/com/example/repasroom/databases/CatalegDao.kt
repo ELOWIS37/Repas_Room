@@ -23,6 +23,9 @@ interface CatalegDao {
     @Query("SELECT * FROM Moble ORDER BY nom DESC")
     fun getMobles(): LiveData<List<Moble>>
 
-    @Query("SELECT * FROM Moble  where id =:id")
+    @Query("SELECT * FROM Moble WHERE nom LIKE :nom AND preu LIKE :preu")
+    fun searchMoblesByNomPreu(nom: String, preu: Int): LiveData<List<Moble>>
+
+    @Query("SELECT * FROM Moble  where id =:id") //no utilitzat
     fun getMoblesById(id:Int): LiveData<List<Moble>>
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -58,6 +59,24 @@ class CatalegFragment : Fragment() {
                 recyclerView.adapter = viewAdapter
             }
         })
+
+        binding.buscarButton.setOnClickListener {
+            val nom = binding.buscarNom.text.toString()
+            val preu = binding.buscarPreu.text.toString().trim() // Es posa toString.trim() per poder fer la condició si es empty o no en el preu ja que es un int no string
+            // Condició per si els valors de nom y preu de buscar son buits i si es fa clic al boto que no peti la app que salta un toast y retorni a dalt
+            if (nom.isEmpty() || preu.isEmpty()) {
+                Toast.makeText(requireContext(), "Sisplau, completi tots els camps", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            // Es posa preu.toInt per pasar preu amb string a Int
+            catalegViewModel.buscarMobles(requireContext(), nom, preu.toInt())?.observe(viewLifecycleOwner, Observer { mobles ->
+                if (mobles.isNotEmpty()) {
+                    Toast.makeText(requireContext(), "Producte trobat", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Producte NO trobat", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
 
         return binding.root
     }

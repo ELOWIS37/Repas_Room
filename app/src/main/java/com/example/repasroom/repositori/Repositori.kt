@@ -61,6 +61,13 @@ class Repositori {
             return moble
         }
 
+        //SELECT buscar mobles(like log-in)
+        fun buscarMoblesByNomPreu(context: Context, nom: String, preu: Int): LiveData<List<Moble>>? {
+            catalegDatabase = initializeDB(context)
+
+            return catalegDatabase!!.catalegDao().searchMoblesByNomPreu(nom, preu)
+        }
+
         //SELECT ID moble
         fun getMobleById(context: Context, id: Int): LiveData<List<Moble>>? {
 
